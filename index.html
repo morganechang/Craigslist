@@ -30,7 +30,7 @@
                     <p class="lead">All Rentals</p>
                     <div class="list-group">
                         <a href="#" id="all" class="list-group-item filter active">All</a>
-                        <a href="#" id="the-bronx" class="list-group-item filter">Bronx</a>
+                        <a href="#" id="the-bronx" class="list-group-item filter ">Bronx</a>
                         <a href="#" id="brooklyn" class="list-group-item filter">Brooklyn</a>
                         <a href="#" id="manhattan" class="list-group-item filter">Manhattan</a>
                         <a href="#" id="queens" class="list-group-item filter">Queens</a>
@@ -45,5 +45,27 @@
         </div>
     </body>
 </html>
+
+
+<!-- 
+Ok, I know it's not a ton of time but I would love to see you attempt the following –
+
+1. We may have already done this, but append the city as the class name formatted correctly, so that Staten Island becomes staten-island
+
+2. Make sure you're formatting/layout matches the design spec (see below)
+
+3. When one of the city names in clicked on the side, add the active class to that element and remove it from any other elements. The "active" class comes from bootstrap, you just need to apply it. 
+
+4.  Make a filter function and set it up some clicking on any of the city names to the left calls it. The filter function should hide listings that don't match the specified city.  
+
+
+5. click on listing, address is element in listing from api, when you click on a listing, opens that address in a new tab in google maps
+
+* once listing clicked, pulled data attribute off (save in var apartmentID
+*looop thorugh window.id, find the object htat also has that id
+*once we find that specific object, pull the address and open that in a new google maps app
+
+window.open("http://maps.google.com/?q=" + address);-->
+
 
 
