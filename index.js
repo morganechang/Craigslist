@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	console.log("start")
 //getJSON = pull a request v. postJSON = save a request
 
 	$.ajax({
@@ -9,10 +10,10 @@ $(document).ready(function() {
 	  	window.data = response;
 
 
-	  	$.each(response.apartments, function(_index, apartment){  //_unusedObject 
+	  	$.each(response.apartments, function(_index, apartment){  // (array, variable used to name a single element in that list; single element in the object/our variable to name)
 	  		var displayId = apartment.city.toLowerCase().replace(" ", "-");
 
-	  		$(".apartments").append("<div data-apartment-id=" + apartment.id + " class='list-group-item listing' id=" + displayId + "><h4 class='mb-1'>" + apartment.description + "/" + apartment.bedrooms + "/" + apartment.price + "</h4>" + apartment.address + "<br>" + apartment.city + "</div>");	  	
+	  		$(".apartments").append("<div data-apartment-id="+ apartment.id +" class='list-group-item listing' id=" + displayId + "><h4 class='mb-1'>" + apartment.description + "/" + apartment.bedrooms + "/" + apartment.price + "</h4>" + apartment.address + "<br>" + apartment.city + "</div>");	  	
 	  		//"data attributes" when no meaning; no need for ID or class; anything that begins "data"
  	  	})
 	  }
@@ -33,19 +34,36 @@ $(document).ready(function() {
 		
 	});
 
-	$(".listing").on("click", function(){
+	$(document).on("click", ".listing", function(){ //getting around CLICKS for dynamically created elements; have to append a clickhandler to something that is real on the page when DOM loads
+		console.log("user clicked");
+		debugger
+		var ourApartments = window.data.apartments; //we saved our API response in the window
+		var clickedApartmentId = $(this).attr("data-apartment-id");//we created the unique id and added as 'attribute' / what attribute is expecting is a string with the attribute name (ie: id)
+		debugger
+		
+		// for (var i = 0; i < ourApartments.length; i++) {
+		// 	ourApartments[i]; // this is access a SINGLE element from our code
+		// 	if(ourApartments[i].id==clickedApartmentId){
+		// 		debugger
+		// 		var mapAddress = ourApartments[i].address;
+		// 		window.open("http://maps.google.com/?q=" + mapAddress);
+		// 	}
+		// };
+	
+		// $.each(ourApartments, function(_index, loopApartment){ //_index = _ best practice 
+		// 	if(loopApartment.id==clickedApartmentId){
+		// 		var mapAddress = loopApartment.address;
+		// 		window.open("http://maps.google.com/?q=" + mapAddress);
+		// 	}
+		// });
 
-		$.each(window.data.apartments, function(_index, apartment){ 
-
-			if(apartment.id==("data-apartment-id")the real API response, which we dont have access to here, but wedo have access to which we storedin thewindow above. the id off of the element that was clicked)	
-			
-			var address = apartment.address (once we know that address has been confirmed)
-
-			window.open("http://maps.google.com/?q=" + address);
+		ourApartments.forEach(function(loopApartment, index, ourApartments){
+			if(loopApartment.id==clickedApartmentId){
+				var mapAddress = loopApartment.address;
+				window.open("http://maps.google.com/?q=" + mapAddress);
+			};
 		});
-
 	});
-
 });	
 
 
